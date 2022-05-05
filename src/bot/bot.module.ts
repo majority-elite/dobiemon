@@ -4,6 +4,7 @@ import { Intents } from 'discord.js';
 import { SettingsConfigService } from '@/constants/settings.service';
 import { SettingsConfigModule } from '@/constants/settings.module';
 import { BotGateway } from './bot.gateway';
+import { SoragodungCommand } from './soragodung/soragodung.command';
 
 @Module({
   imports: [
@@ -24,6 +25,6 @@ import { BotGateway } from './bot.gateway';
       inject: [SettingsConfigService],
     }),
   ],
-  providers: [BotGateway],
+  providers: [BotGateway, SoragodungCommand],
 })
 export class BotModule {}

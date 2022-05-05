@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { On, Once, InjectDiscordClient } from '@discord-nestjs/core';
-import { Client, Message } from 'discord.js';
+import { Once, InjectDiscordClient } from '@discord-nestjs/core';
+import { Client } from 'discord.js';
 
 @Injectable()
 export class BotGateway {
@@ -14,12 +14,5 @@ export class BotGateway {
   @Once('ready')
   onReady() {
     this.logger.log(`Bot ${this.client.user.tag} was started!`);
-  }
-
-  @On('messageCreate')
-  async onMessage(message: Message): Promise<void> {
-    if (!message.author.bot) {
-      await message.reply('ㅁㄴㅇㄹ');
-    }
   }
 }

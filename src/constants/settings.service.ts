@@ -15,4 +15,8 @@ export class SettingsConfigService {
   get guildId(): string {
     return this.configService.get(ENV.GUILD_ID);
   }
+
+  get afkChannelId(): string {
+    return this.configService.get(ENV.AFK_CHANNEL_ID);
+  }
 }

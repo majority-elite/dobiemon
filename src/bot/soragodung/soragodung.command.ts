@@ -3,7 +3,7 @@ import {
   UsePipes,
   Payload,
   DiscordTransformedCommand,
-  ExecutionContext,
+  TransformedCommandExecutionContext,
 } from '@discord-nestjs/core';
 import { TransformPipe } from '@discord-nestjs/common';
 import { InteractionReplyOptions } from 'discord.js';
@@ -22,7 +22,7 @@ export class SoragodungCommand
 {
   handler(
     @Payload() dto: SoragodungDto,
-    executionContext: ExecutionContext,
+    executionContext: TransformedCommandExecutionContext,
   ): InteractionReplyOptions {
     const choices = dto.choices.split(' ');
     const result = choices[Math.floor(Math.random() * choices.length)];

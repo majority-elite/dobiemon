@@ -5,6 +5,7 @@ import { SettingsConfigService } from '@/constants/settings.service';
 import { SettingsConfigModule } from '@/constants/settings.module';
 import { BotGateway } from './bot.gateway';
 import { SoragodungCommand } from './soragodung/soragodung.command';
+import { VoteCommand } from './vote/vote.command';
 
 @Module({
   imports: [
@@ -24,7 +25,8 @@ import { SoragodungCommand } from './soragodung/soragodung.command';
       }),
       inject: [SettingsConfigService],
     }),
+    SettingsConfigModule,
   ],
-  providers: [BotGateway, SoragodungCommand],
+  providers: [BotGateway, SoragodungCommand, VoteCommand],
 })
 export class BotModule {}

@@ -6,10 +6,10 @@ import {
   TransformedCommandExecutionContext,
 } from '@discord-nestjs/core';
 import { TransformPipe } from '@discord-nestjs/common';
-import { Message, MessageEmbed } from 'discord.js';
-import { Injectable } from '@nestjs/common';
+import { Message, MessageEmbed, User, DiscordAPIError } from 'discord.js';
+import { Injectable, Logger } from '@nestjs/common';
 import { VotekickDto } from './votekick.dto';
-import { getBasicEmbed, receiveReactions } from '@/utils/botUtils';
+import { getBasicEmbed, receiveReactions } from '../utils';
 import { SettingsConfigService } from '@/constants/settings.service';
 
 const agreeEmoji = '👍';
@@ -27,6 +27,8 @@ const WAITING_TIME = 10;
 @Injectable()
 @UsePipes(TransformPipe)
 export class VotekickCommand implements DiscordTransformedCommand<VotekickDto> {
+  private readonly logger = new Logger(VotekickCommand.name);
+
   constructor(private readonly settingsConfigService: SettingsConfigService) {}
 
   async handler(
@@ -34,6 +36,7 @@ export class VotekickCommand implements DiscordTransformedCommand<VotekickDto> {
     executionContext: TransformedCommandExecutionContext,
   ): Promise<void> {
     const settingsConfigService = this.settingsConfigService;
+    const logger = this.logger;
 
     const client = executionContext.interaction.client;
     const guild = await client.guilds.fetch(settingsConfigService.guildId);
@@ -64,32 +67,40 @@ export class VotekickCommand implements DiscordTransformedCommand<VotekickDto> {
      * @param count 이모지별로 반응한 유저 수
      * @param reply 결정된 정보를 담도록 수정할 메시지
      */
-    async function kick(count: number[], reply: Message): Promise<void> {
-      const [agrees, disagrees] = count;
+    async function kick(users: User[][], reply: Message): Promise<void> {
+      const [agrees, disagrees] = users;
 
-      if (agrees > disagrees) {
+      if (agrees.length > disagrees.length) {
         // 과반수 초과
         await reply.edit({
           embeds: [
             getBasicEmbed({
               title: '추방하는 것으로 결정되었습니다.',
-              description: `<@${target}> 님의 추방이 찬성 ${agrees}표,
-              반대 ${disagrees}표로 가결되었습니다.`,
+              description: `<@${target}> 님의 추방이 찬성 ${agrees.length}표,
+              반대 ${disagrees.length}표로 가결되었습니다.`,
             }),
           ],
         });
 
         // 잠수 채널로 이동
-        const targetMember = await guild.members.fetch(target);
-        await targetMember.voice.setChannel(settingsConfigService.afkChannelId);
+        try {
+          const targetMember = await guild.members.fetch(target);
+          await targetMember.voice.setChannel(
+            settingsConfigService.afkChannelId,
+          );
+        } catch (error) {
+          if (error instanceof DiscordAPIError) {
+            logger.log(error.message);
+          } else throw error;
+        }
       } else {
         // 과반수 이하
         await reply.edit({
           embeds: [
             getBasicEmbed({
               title: '추방하지 않는 것으로 결정되었습니다.',
-              description: `<@${target}> 님의 추방이 찬성 ${agrees}표,
-              반대 ${disagrees}표로 부결되었습니다.`,
+              description: `<@${target}> 님의 추방이 찬성 ${agrees.length}표,
+              반대 ${disagrees.length}표로 부결되었습니다.`,
             }),
           ],
         });
@@ -102,8 +113,8 @@ export class VotekickCommand implements DiscordTransformedCommand<VotekickDto> {
         getEmbed,
         message,
         waitingTime: WAITING_TIME,
-        callback: async (count: number[]): Promise<void> => {
-          await kick(count, message);
+        callback: async (users: User[][]): Promise<void> => {
+          await kick(users, message);
         },
       });
     }

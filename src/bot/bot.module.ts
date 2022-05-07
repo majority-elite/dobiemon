@@ -8,6 +8,7 @@ import { BotGateway } from './bot.gateway';
 // Commands
 import { SoragodungCommand } from './soragodung/soragodung.command';
 import { VotekickCommand } from './votekick/votekick.command';
+import { TeamCommand } from './team/team.command';
 
 @Module({
   imports: [
@@ -29,6 +30,6 @@ import { VotekickCommand } from './votekick/votekick.command';
     }),
     SettingsConfigModule,
   ],
-  providers: [BotGateway, SoragodungCommand, VotekickCommand],
+  providers: [BotGateway, SoragodungCommand, VotekickCommand, TeamCommand],
 })
 export class BotModule {}

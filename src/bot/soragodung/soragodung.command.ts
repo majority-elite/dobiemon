@@ -9,7 +9,7 @@ import { TransformPipe } from '@discord-nestjs/common';
 import { InteractionReplyOptions } from 'discord.js';
 import { Injectable } from '@nestjs/common';
 import { SoragodungDto } from './soragodung.dto';
-import { getBasicEmbed } from '@/utils/botUtils';
+import { getBasicEmbed } from '../utils';
 
 @Command({
   name: '소라고둥',

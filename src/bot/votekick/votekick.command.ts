@@ -8,7 +8,7 @@ import {
 import { TransformPipe } from '@discord-nestjs/common';
 import { Message, MessageEmbed } from 'discord.js';
 import { Injectable } from '@nestjs/common';
-import { VoteDto } from './vote.dto';
+import { VotekickDto } from './votekick.dto';
 import { getBasicEmbed, receiveReactions } from '@/utils/botUtils';
 import { SettingsConfigService } from '@/constants/settings.service';
 
@@ -26,11 +26,11 @@ const WAITING_TIME = 10;
 })
 @Injectable()
 @UsePipes(TransformPipe)
-export class VoteCommand implements DiscordTransformedCommand<VoteDto> {
+export class VotekickCommand implements DiscordTransformedCommand<VotekickDto> {
   constructor(private readonly settingsConfigService: SettingsConfigService) {}
 
   async handler(
-    @Payload() dto: VoteDto,
+    @Payload() dto: VotekickDto,
     executionContext: TransformedCommandExecutionContext,
   ): Promise<void> {
     const settingsConfigService = this.settingsConfigService;

@@ -4,8 +4,10 @@ import { Intents } from 'discord.js';
 import { SettingsConfigService } from '@/constants/settings.service';
 import { SettingsConfigModule } from '@/constants/settings.module';
 import { BotGateway } from './bot.gateway';
+
+// Commands
 import { SoragodungCommand } from './soragodung/soragodung.command';
-import { VoteCommand } from './vote/vote.command';
+import { VotekickCommand } from './votekick/votekick.command';
 
 @Module({
   imports: [
@@ -27,6 +29,6 @@ import { VoteCommand } from './vote/vote.command';
     }),
     SettingsConfigModule,
   ],
-  providers: [BotGateway, SoragodungCommand, VoteCommand],
+  providers: [BotGateway, SoragodungCommand, VotekickCommand],
 })
 export class BotModule {}

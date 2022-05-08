@@ -7,9 +7,16 @@ export class SettingsConfigService {
   constructor(private configService: ConfigService) {}
 
   get botToken(): string {
-    return process.env.NODE_ENV === 'development'
-      ? this.configService.get(ENV.BOT_TEST_TOKEN)
-      : this.configService.get(ENV.BOT_TOKEN);
+    const TEST_TOKEN = this.configService.get(ENV.BOT_TEST_TOKEN);
+    const TOKEN = this.configService.get(ENV.BOT_TOKEN);
+
+    const RAILWAY_ENV = process.env[ENV.RAILWAY_ENVIRONMENT];
+    if (RAILWAY_ENV) {
+      if (RAILWAY_ENV === 'production') return TOKEN;
+      else return TEST_TOKEN;
+    }
+
+    return process.env.NODE_ENV === 'development' ? TEST_TOKEN : TOKEN;
   }
 
   get guildId(): string {

@@ -7,7 +7,8 @@ export class SettingsConfigService {
   constructor(private configService: ConfigService) {}
 
   get botToken(): string {
-    return process.env.NODE_ENV === 'development'
+    return process.env.NODE_ENV === 'development' &&
+      process.env[ENV.RAILWAY_ENVIRONMENT] !== 'production'
       ? this.configService.get(ENV.BOT_TEST_TOKEN)
       : this.configService.get(ENV.BOT_TOKEN);
   }

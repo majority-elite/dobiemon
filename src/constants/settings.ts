@@ -5,5 +5,6 @@ export const ENV = {
   GUILD_ID: 'GUILD_ID',
   AFK_CHANNEL_ID: 'AFK_CHANNEL_ID',
   DATABASE_URL: 'DATABASE_URL',
+  RAILWAY_ENVIRONMENT: 'RAILWAY_ENVIRONMENT',
 } as const;
 export type Env = typeof ENV[keyof typeof ENV];

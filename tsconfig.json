@@ -17,10 +17,12 @@
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
+    "useDefineForClassFields": true,
     "paths": {
       "@/constants/*": ["./src/constants/*"],
       "@/providers/*": ["./src/providers/*"],
-      "@/models/*": ["./src/models/*"]
+      "@/models/*": ["./src/models/*"],
+      "@/utils/*": ["./src/utils/*"]
     }
   }
 }

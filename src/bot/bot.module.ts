@@ -5,6 +5,11 @@ import { SettingsConfigService } from '@/constants/settings.service';
 import { SettingsConfigModule } from '@/constants/settings.module';
 import { BotGateway } from './bot.gateway';
 
+// Commands
+import { SoragodungCommand } from './soragodung/soragodung.command';
+import { VotekickCommand } from './votekick/votekick.command';
+import { TeamCommand } from './team/team.command';
+
 @Module({
   imports: [
     DiscordModule.forRootAsync({
@@ -23,7 +28,8 @@ import { BotGateway } from './bot.gateway';
       }),
       inject: [SettingsConfigService],
     }),
+    SettingsConfigModule,
   ],
-  providers: [BotGateway],
+  providers: [BotGateway, SoragodungCommand, VotekickCommand, TeamCommand],
 })
 export class BotModule {}

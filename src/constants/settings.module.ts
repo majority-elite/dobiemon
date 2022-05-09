@@ -17,6 +17,7 @@ import { ENV } from '@/constants/settings';
         [ENV.AFK_CHANNEL_ID]: Joi.string().required(),
         [ENV.DATABASE_URL]: Joi.string().required(),
         [ENV.RAILWAY_ENVIRONMENT]: Joi.string(),
+        [ENV.PORT]: Joi.string(),
       }),
     }),
   ],

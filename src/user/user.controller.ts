@@ -6,7 +6,7 @@ import { UserService } from './user.service';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Get('user/id/all')
+  @Get('user/all')
   async getAllUserIDs(): Promise<GuildMember[]> {
     return await this.userService.getAllUsers();
   }

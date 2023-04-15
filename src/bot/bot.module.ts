@@ -17,7 +17,11 @@ import { TeamCommand } from './team/team.command';
       useFactory: (settingsConfigService: SettingsConfigService) => ({
         token: settingsConfigService.botToken,
         discordClientOptions: {
-          intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS],
+          intents: [
+            Intents.FLAGS.GUILDS,
+            Intents.FLAGS.GUILD_MESSAGES,
+            Intents.FLAGS.GUILD_MEMBERS,
+          ],
         },
         registerCommandOptions: [
           {
@@ -31,6 +35,6 @@ import { TeamCommand } from './team/team.command';
     SettingsConfigModule,
   ],
   providers: [BotGateway, SoragodungCommand, VotekickCommand, TeamCommand],
-  exports: [BotGateway]
+  exports: [BotGateway],
 })
 export class BotModule {}

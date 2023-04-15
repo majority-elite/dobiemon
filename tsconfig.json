@@ -19,10 +19,7 @@
     "noFallthroughCasesInSwitch": false,
     "useDefineForClassFields": true,
     "paths": {
-      "@/constants/*": ["./src/constants/*"],
-      "@/providers/*": ["./src/providers/*"],
-      "@/models/*": ["./src/models/*"],
-      "@/utils/*": ["./src/utils/*"]
+      "@/*": ["./src/*"]
     }
   }
 }

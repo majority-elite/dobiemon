@@ -1,7 +1,7 @@
 import { SettingsConfigService } from '@/constants/settings.service';
 import { Injectable } from '@nestjs/common';
 import { GuildMember } from 'discord.js';
-import { BotGateway } from 'src/bot/bot.gateway';
+import { BotGateway } from '@/bot/bot.gateway';
 
 @Injectable()
 export class UserService {

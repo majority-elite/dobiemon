@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
-import { BotModule } from 'src/bot/bot.module';
+import { BotModule } from '@/bot/bot.module';
 import { SettingsConfigService } from '@/constants/settings.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 

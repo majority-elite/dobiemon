@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "nest build",
+    "build": "nest build && tsc-alias",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "cross-env NODE_ENV=development nest start --watch",
@@ -55,6 +55,7 @@
     "ts-jest": "27.1.4",
     "ts-loader": "9.3.0",
     "ts-node": "10.7.0",
+    "tsc-alias": "^1.8.5",
     "tsconfig-paths": "3.14.1",
     "typescript": "5.0.4"
   },

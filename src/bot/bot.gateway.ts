@@ -15,4 +15,8 @@ export class BotGateway {
   onReady() {
     this.logger.log(`Bot ${this.client.user.tag} was started!`);
   }
+
+  getClient() {
+    return this.client;
+  }
 }

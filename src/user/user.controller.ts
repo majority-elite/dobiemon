@@ -6,7 +6,7 @@ import { MinimalUserInfo } from './user-info.inferface';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Get('user/all')
+  @Get('user/all/minimal')
   async getAllUserIDs(): Promise<MinimalUserInfo[]> {
     return await this.userService.getAllUsersInfoMinimal();
   }

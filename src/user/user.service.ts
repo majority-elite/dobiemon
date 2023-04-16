@@ -1,7 +1,7 @@
 import { SettingsConfigService } from '@/constants/settings.service';
 import { Injectable } from '@nestjs/common';
-import { GuildMember } from 'discord.js';
 import { BotGateway } from '@/bot/bot.gateway';
+import { UserInfo } from './user-info.inferface';
 
 @Injectable()
 export class UserService {
@@ -10,12 +10,20 @@ export class UserService {
     private readonly settingsConfigService: SettingsConfigService,
   ) {}
 
-  async getAllUsers(): Promise<GuildMember[]> {
+  async getAllUsers(): Promise<UserInfo[]> {
     const guild = await this.bot
       .getClient()
       .guilds.fetch(this.settingsConfigService.guildId);
-    const usersCollection = await guild.members.fetch();
+    const usersBotExcluded = (await guild.members.fetch()).filter(
+      (member) => !member.user.bot,
+    );
 
-    return usersCollection.filter((member) => !member.user.bot).toJSON();
+    const userInfos: UserInfo[] = usersBotExcluded.map((member) => ({
+      displayName: member.displayName,
+      userId: member.user.id,
+      displayAvatarURL: member.user.displayAvatarURL(),
+    }));
+
+    return userInfos;
   }
 }

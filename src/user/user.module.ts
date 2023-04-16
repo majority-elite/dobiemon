@@ -2,12 +2,11 @@ import { Module } from '@nestjs/common';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
 import { BotModule } from '@/bot/bot.module';
-import { SettingsConfigService } from '@/constants/settings.service';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { SettingsConfigModule } from '@/constants/settings.module';
 
 @Module({
-  imports: [BotModule, ConfigModule],
-  providers: [UserService, SettingsConfigService, ConfigService],
+  imports: [BotModule, SettingsConfigModule],
+  providers: [UserService],
   controllers: [UserController],
 })
 export class UserModule {}

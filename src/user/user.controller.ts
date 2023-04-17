@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 import { UserService } from './user.service';
-import { UserProfile } from './user-info.inferface';
+import { UserProfile } from './user.inferface';
 
 @Controller()
 export class UserController {

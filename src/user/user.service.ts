@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import type { UserProfile } from './user-info.inferface';
+import type { UserProfile } from './user.inferface';
 import { BotService } from '@/bot/bot.service';
 
 @Injectable()

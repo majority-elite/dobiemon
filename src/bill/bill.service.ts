@@ -25,9 +25,14 @@ export class BillService {
     let itemPayers = '';
     billData.items.forEach((item) => {
       let newLines: number;
-      if (item.payers.length == 1) {
+      if (item.payers.includes('all')) {
         newLines = 0;
         itemPayers = itemPayers.concat('모두\n');
+      } else if (item.payers.length == 1) {
+        newLines = 0;
+        itemPayers = itemPayers
+          .concat(item.payers.map((id) => `<@${id}>`).join('\n'))
+          .concat('\n');
       } else {
         newLines = item.payers.length - 1;
         itemPayers = itemPayers

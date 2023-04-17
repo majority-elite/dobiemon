@@ -1,21 +1,18 @@
-import { SettingsConfigService } from '@/constants/settings.service';
 import { Injectable } from '@nestjs/common';
-import { GuildMember } from 'discord.js';
-import { BotGateway } from '@/bot/bot.gateway';
+import type { UserProfile } from './user.inferface';
+import { BotService } from '@/bot/bot.service';
 
 @Injectable()
 export class UserService {
-  constructor(
-    private readonly bot: BotGateway,
-    private readonly settingsConfigService: SettingsConfigService,
-  ) {}
+  constructor(private readonly botService: BotService) {}
 
-  async getAllUsers(): Promise<GuildMember[]> {
-    const guild = await this.bot
-      .getClient()
-      .guilds.fetch(this.settingsConfigService.guildId);
-    const usersCollection = await guild.members.fetch();
-
-    return usersCollection.filter((member) => !member.user.bot).toJSON();
+  async getAllUserProfiles(): Promise<UserProfile[]> {
+    const allGuildMembers = await this.botService.getAllGuildMembers();
+    const userProfiles: UserProfile[] = allGuildMembers.map((member) => ({
+      userId: member.user.id,
+      displayName: member.displayName,
+      displayAvatarURL: member.displayAvatarURL(),
+    }));
+    return userProfiles;
   }
 }

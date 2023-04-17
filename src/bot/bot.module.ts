@@ -4,6 +4,7 @@ import { Intents } from 'discord.js';
 import { SettingsConfigService } from '@/constants/settings.service';
 import { SettingsConfigModule } from '@/constants/settings.module';
 import { BotGateway } from './bot.gateway';
+import { BotService } from './bot.service';
 
 // Commands
 import { SoragodungCommand } from './soragodung/soragodung.command';
@@ -34,7 +35,13 @@ import { TeamCommand } from './team/team.command';
     }),
     SettingsConfigModule,
   ],
-  providers: [BotGateway, SoragodungCommand, VotekickCommand, TeamCommand],
-  exports: [BotGateway],
+  providers: [
+    BotService,
+    BotGateway,
+    SoragodungCommand,
+    VotekickCommand,
+    TeamCommand,
+  ],
+  exports: [BotService],
 })
 export class BotModule {}

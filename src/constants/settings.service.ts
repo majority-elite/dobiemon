@@ -26,4 +26,8 @@ export class SettingsConfigService {
   get afkChannelId(): string {
     return this.configService.get(ENV.AFK_CHANNEL_ID);
   }
+
+  get billChannelId(): string {
+    return this.configService.get(ENV.BILL_CHANNEL_ID);
+  }
 }

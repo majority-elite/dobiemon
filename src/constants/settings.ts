@@ -4,7 +4,8 @@ export const ENV = {
   BOT_TEST_TOKEN: 'BOT_TEST_TOKEN',
   GUILD_ID: 'GUILD_ID',
   AFK_CHANNEL_ID: 'AFK_CHANNEL_ID',
+  BILL_CHANNEL_ID: 'BILL_CHANNEL_ID',
   RAILWAY_ENVIRONMENT: 'RAILWAY_ENVIRONMENT',
   PORT: 'PORT',
 } as const;
-export type Env = typeof ENV[keyof typeof ENV];
+export type Env = (typeof ENV)[keyof typeof ENV];

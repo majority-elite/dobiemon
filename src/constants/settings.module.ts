@@ -15,6 +15,7 @@ import { ENV } from '@/constants/settings';
         [ENV.BOT_TEST_TOKEN]: Joi.string().required(),
         [ENV.GUILD_ID]: Joi.string().required(),
         [ENV.AFK_CHANNEL_ID]: Joi.string().required(),
+        [ENV.BILL_CHANNEL_ID]: Joi.string().required(),
         [ENV.RAILWAY_ENVIRONMENT]: Joi.string(),
         [ENV.PORT]: Joi.string(),
       }),

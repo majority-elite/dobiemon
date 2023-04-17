@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { BotGateway } from './bot.gateway';
 import { SettingsConfigService } from '@/constants/settings.service';
 import { Guild } from 'discord.js';
-import { MinimalUserInfo } from '@/user/user-info.inferface';
 
 @Injectable()
 export class BotService {
@@ -17,17 +16,10 @@ export class BotService {
       .guilds.fetch(this.settingsConfigService.guildId);
   }
 
-  async getAllUsersInfoMinimal(): Promise<MinimalUserInfo[]> {
+  /** Bot excluded */
+  async getAllGuildMembers() {
     const guild = await this.getGuild();
-    const users = await guild.members.fetch();
-    const userInfoBotExcluded = users.filter((member) => !member.user.bot);
-
-    const userInfo: MinimalUserInfo[] = userInfoBotExcluded.map((member) => ({
-      userId: member.user.id,
-      displayName: member.displayName,
-      displayAvatarURL: member.displayAvatarURL(),
-    }));
-
-    return userInfo;
+    const guildMember = await guild.members.fetch();
+    return guildMember.filter((member) => !member.user.bot);
   }
 }

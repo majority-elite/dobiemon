@@ -1,13 +1,13 @@
 import { Controller, Get } from '@nestjs/common';
 import { UserService } from './user.service';
-import { MinimalUserInfo } from './user-info.inferface';
+import { UserProfile } from './user-info.inferface';
 
 @Controller()
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Get('user/all/minimal')
-  async getAllUserIDs(): Promise<MinimalUserInfo[]> {
-    return await this.userService.getAllUsersInfoMinimal();
+  @Get('user/all/profile')
+  async getAllUserProfiles(): Promise<UserProfile[]> {
+    return await this.userService.getAllUserProfiles();
   }
 }

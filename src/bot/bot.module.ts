@@ -10,6 +10,7 @@ import { BotService } from './bot.service';
 import { SoragodungCommand } from './soragodung/soragodung.command';
 import { VotekickCommand } from './votekick/votekick.command';
 import { TeamCommand } from './team/team.command';
+import { BillCommand } from '@/bill/bill.command';
 
 @Module({
   imports: [
@@ -41,6 +42,7 @@ import { TeamCommand } from './team/team.command';
     SoragodungCommand,
     VotekickCommand,
     TeamCommand,
+    BillCommand,
   ],
   exports: [BotService],
 })

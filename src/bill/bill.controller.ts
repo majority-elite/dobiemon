@@ -9,7 +9,7 @@ export class BillController {
   @Post('bill')
   async sendBill(@Body() billData: Bill): Promise<Bill> {
     const billEmbed = this.billService.createBillEmbed(billData);
-    await this.billService.sendBillEmbed(billEmbed);
+    await this.billService.sendBill(billEmbed);
     return billData;
   }
 }

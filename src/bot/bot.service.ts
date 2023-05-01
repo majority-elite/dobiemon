@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { BotGateway } from './bot.gateway';
 import { SettingsConfigService } from '@/constants/settings.service';
-import { Guild, MessageEmbed } from 'discord.js';
+import { Guild, MessageEmbed, MessageOptions } from 'discord.js';
 import { TextChannel } from 'discord.js';
 
 @Injectable()
@@ -24,9 +24,9 @@ export class BotService {
     return guildMember.filter((member) => !member.user.bot);
   }
 
-  async sendEmbed(embed: MessageEmbed, channelId: string) {
+  async send(message: MessageOptions, channelId: string) {
     const client = this.botGateway.getClient();
     const channel = (await client.channels.cache.get(channelId)) as TextChannel;
-    await channel.send({ embeds: [embed] });
+    await channel.send(message);
   }
 }

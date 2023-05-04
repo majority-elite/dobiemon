@@ -4,28 +4,12 @@ import { BillService } from './bill.service';
 import { BotModule } from '@/bot/bot.module';
 import { SettingsConfigModule } from '@/constants/settings.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { SettingsConfigService } from '@/constants/settings.service';
+import { Bill } from './bill.entity';
 
 @Module({
-  imports: [
-    BotModule,
-    SettingsConfigModule,
-    TypeOrmModule.forRootAsync({
-      imports: [SettingsConfigModule],
-      useFactory: (settingsConfigService: SettingsConfigService) => ({
-        type: 'postgres',
-        host: settingsConfigService.dbHost,
-        port: settingsConfigService.dbPort,
-        database: settingsConfigService.billDbName,
-        username: settingsConfigService.billDbUsername,
-        password: settingsConfigService.billDbPassword,
-        entities: [],
-        synchronize: true,
-      }),
-      inject: [SettingsConfigService],
-    }),
-  ],
+  imports: [BotModule, SettingsConfigModule, TypeOrmModule.forFeature([Bill])],
   controllers: [BillController],
   providers: [BillService],
+  exports: [TypeOrmModule],
 })
 export class BillModule {}

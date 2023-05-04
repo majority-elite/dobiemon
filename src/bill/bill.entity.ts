@@ -1,5 +1,6 @@
 import {
   Column,
+  CreateDateColumn,
   Entity,
   OneToMany,
   OneToOne,
@@ -13,8 +14,8 @@ export class Bill {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @Column({ type: 'date' })
-  createdAt!: string;
+  @CreateDateColumn()
+  createdAt!: Date;
 
   @OneToOne((type) => Participants, (participants) => participants.bill)
   participants!: Participants;

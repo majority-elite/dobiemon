@@ -28,7 +28,6 @@
     "@nestjs/core": "8.4.4",
     "@nestjs/platform-fastify": "8.4.4",
     "@nestjs/typeorm": "^9.0.1",
-    "@prisma/client": "3.13.0",
     "cross-env": "7.0.3",
     "discord.js": "13.6.0",
     "joi": "17.6.0",

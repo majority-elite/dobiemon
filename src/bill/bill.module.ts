@@ -4,7 +4,7 @@ import { BillService } from './bill.service';
 import { BotModule } from '@/bot/bot.module';
 import { SettingsConfigModule } from '@/constants/settings.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Bill } from './bill.entity';
+import { Bill } from '@/entities/bill.entity';
 
 @Module({
   imports: [BotModule, SettingsConfigModule, TypeOrmModule.forFeature([Bill])],

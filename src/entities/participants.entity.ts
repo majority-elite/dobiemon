@@ -1,5 +1,5 @@
 import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { Bill } from './bill.model';
+import { Bill } from './bill.entity';
 
 @Entity()
 export class Participants {

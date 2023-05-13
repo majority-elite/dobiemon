@@ -15,6 +15,6 @@ export class Payment {
   @Column({ type: 'integer' })
   item_price!: number;
 
-  @Column({ array: true })
+  @Column({ type: 'text', array: true })
   users!: string[];
 }

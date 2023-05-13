@@ -9,6 +9,6 @@ export class Participants {
   @OneToOne((type) => Bill, (bill) => bill.participants)
   bill!: Bill;
 
-  @Column({ array: true })
+  @Column({ type: 'text', array: true })
   users!: string[];
 }

@@ -7,7 +7,7 @@ import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { SettingsConfigModule } from './constants/settings.module';
 import { SettingsConfigService } from './constants/settings.service';
-import { Bill } from './bill/bill.entity';
+import { Bill } from '@/entities/bill.entity';
 
 @Module({
   imports: [

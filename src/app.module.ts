@@ -8,6 +8,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { SettingsConfigModule } from './constants/settings.module';
 import { SettingsConfigService } from './constants/settings.service';
 import { Bill } from '@/entities/bill.entity';
+import { Participants } from './entities/participants.entity';
+import { Payment } from './entities/payment.entity';
 
 @Module({
   imports: [
@@ -23,8 +25,9 @@ import { Bill } from '@/entities/bill.entity';
         database: settingsConfigService.billDbName,
         username: settingsConfigService.billDbUsername,
         password: settingsConfigService.billDbPassword,
-        entities: [Bill],
+        entities: [Bill, Participants, Payment],
         synchronize: true,
+        autoLoadEntities: true,
       }),
       inject: [SettingsConfigService],
     }),

@@ -19,9 +19,9 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "migration:generate": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:generate -d ormconfig.ts",
-    "migration:up": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:run -d ormconfig.ts",
-    "migration:down": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:revert ormconfig.ts"
+    "migration:generate": "ts-node ./node_modules/.bin/typeorm migration:generate -d ormconfig.ts",
+    "migration:up": "ts-node ./node_modules/.bin/typeorm migration:run -d ormconfig.ts",
+    "migration:down": "ts-node ./node_modules/.bin/typeorm migration:revert ormconfig.ts"
   },
   "dependencies": {
     "@discord-nestjs/common": "3.1.0",

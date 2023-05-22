@@ -30,4 +30,24 @@ export class SettingsConfigService {
   get billChannelId(): string {
     return this.configService.get(ENV.BILL_CHANNEL_ID);
   }
+
+  get dbHost(): string {
+    return this.configService.get(ENV.DB_HOST);
+  }
+
+  get dbPort(): number {
+    return this.configService.get(ENV.DB_PORT);
+  }
+
+  get billDbName(): string {
+    return this.configService.get(ENV.BILL_DB_NAME);
+  }
+
+  get billDbUsername(): string {
+    return this.configService.get(ENV.BILL_DB_USERNAME);
+  }
+
+  get billDbPassword(): string {
+    return this.configService.get(ENV.BILL_DB_PASSWORD);
+  }
 }

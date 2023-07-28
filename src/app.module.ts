@@ -7,9 +7,9 @@ import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { SettingsConfigModule } from './constants/settings.module';
 import { SettingsConfigService } from './constants/settings.service';
-import { Bill } from '@/entities/bill.entity';
-import { Participants } from './entities/participants.entity';
-import { Payment } from './entities/payment.entity';
+import { Bill } from '@/bill/entities/bill.entity';
+import { Participants } from './bill/entities/participants.entity';
+import { Payment } from './bill/entities/payment.entity';
 
 @Module({
   imports: [

@@ -1,4 +1,4 @@
-export class Bill {
+export class BillInput {
   readonly participants: string[];
   readonly items: Item[];
   readonly payments: Payment[];

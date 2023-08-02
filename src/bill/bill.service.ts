@@ -2,7 +2,7 @@ import { BotService } from '@/bot/bot.service';
 import { Injectable } from '@nestjs/common';
 import { MessageEmbed } from 'discord.js';
 import { SettingsConfigService } from '@/constants/settings.service';
-import { Bill } from './bill.model';
+import { BillInput } from './bill.input';
 
 @Injectable()
 export class BillService {
@@ -11,7 +11,7 @@ export class BillService {
     private readonly settingsConfigService: SettingsConfigService,
   ) {}
 
-  createBillEmbed(billData: Bill): MessageEmbed {
+  createBillEmbed(billData: BillInput): MessageEmbed {
     const billEmbed = new MessageEmbed()
       .setTitle('< Bill To Friends >')
       .addField(

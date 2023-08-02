@@ -1,4 +1,10 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Bill } from './bill.entity';
 
 @Entity()
@@ -17,4 +23,7 @@ export class Payment {
 
   @Column({ type: 'text', array: true })
   users!: string[];
+
+  @CreateDateColumn()
+  createdAt!: Date;
 }
